@@ -60,3 +60,8 @@ class GoErrCheckBear:
         if asserts:
             args += ('-asserts',)
         return args + (filename,)
+
+    @classmethod
+    def setup_dependencies(cls):
+        for dep in cls.REQUIREMENTS:
+            dep.install_all()

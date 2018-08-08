@@ -33,3 +33,8 @@ class GofmtBear:
         if simplify:
             args += ('-s',)
         return args
+
+    @classmethod
+    def setup_dependencies(cls):
+        for dep in cls.REQUIREMENTS:
+            dep.install_all()

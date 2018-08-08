@@ -31,3 +31,8 @@ class GoLintBear:
         if golint_cli_options:
             args += tuple(shlex.split(golint_cli_options))
         return args + (filename,)
+
+    @classmethod
+    def setup_dependencies(cls):
+        for dep in cls.REQUIREMENTS:
+            dep.install_all()

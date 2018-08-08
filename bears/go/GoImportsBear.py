@@ -21,3 +21,8 @@ class GoImportsBear:
     @staticmethod
     def create_arguments(filename, file, config_file):
         return ()
+
+    @classmethod
+    def setup_dependencies(cls):
+        for dep in cls.REQUIREMENTS:
+            dep.install_all()
