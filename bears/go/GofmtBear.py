@@ -1,5 +1,10 @@
 from coalib.bearlib.abstractions.Linter import linter
-from dependency_management.requirements.GoRequirement import GoRequirement
+from dependency_management.requirements.AnyOneOfRequirements import (
+    AnyOneOfRequirements)
+from dependency_management.requirements.ExecutableRequirement import (
+    ExecutableRequirement)
+from dependency_management.requirements.DistributionRequirement import (
+    DistributionRequirement)
 
 
 @linter(executable='gofmt',
@@ -15,7 +20,12 @@ class GofmtBear:
     <https://golang.org/cmd/gofmt/>.
     """
     LANGUAGES = {'Go'}
-    REQUIREMENTS = {GoRequirement(package='golang.org/cmd/gofmt', flag='-u')}
+    REQUIREMENTS = {
+        AnyOneOfRequirements([
+            DistributionRequirement('go'),
+            ExecutableRequirement('gofmt'),
+        ])
+    }
     AUTHORS = {'The coala developers'}
     AUTHORS_EMAILS = {'coala-devel@googlegroups.com'}
     LICENSE = 'AGPL-3.0'
